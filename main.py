@@ -1,8 +1,9 @@
 from enum import Enum
 from fastapi import FastAPI
 
-from getData.getDataFromWeb import get_crawl_data_web1
-from getData.getDataFromWeb import get_crawl_data_web2
+from getData.getDataFromWeb import (
+    get_crawl_data_web1, get_crawl_data_web2
+)
 
 from mysqlpackage import (
     mydb, table_name
@@ -65,11 +66,13 @@ def search_by_area(area_: str, unit_: unit_area):
 
 
 @app.get('/search/area_inrange')
-def search_by_inrange_area(
+def search_by_in_range_area(
         area_min: str, area_max: str,
         unit_: unit_area):
 
-    return search_area_inrange(mydb, table_name, area_min, area_max, unit_)
+    return search_area_inrange(
+            mydb, table_name,
+            area_min, area_max, unit_)
 
 
 @app.get('/search/price')
@@ -78,7 +81,7 @@ def search_by_price(price_: str, unit_: unit_price):
 
 
 @app.get('/search/price_inrange')
-def search_by_inrange_price(
+def search_by_in_range_price(
         price_min: str, price_max: str,
         unit_: unit_price):
 
